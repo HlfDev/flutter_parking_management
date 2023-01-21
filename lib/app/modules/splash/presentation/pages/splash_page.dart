@@ -24,11 +24,11 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    _splashBloc.add(SplasLoadingEvent());
+    _splashBloc.add(const SplashLoadingEvent());
 
     Future.delayed(
       const Duration(seconds: 3),
-      () => _splashBloc.add(SplashLoadingFinishedEvent()),
+      () => _splashBloc.add(const SplashLoadingFinishedEvent()),
     );
   }
 

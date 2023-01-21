@@ -1,17 +1,29 @@
 part of 'splash_bloc.dart';
 
-abstract class SplashState {}
+@immutable
+abstract class SplashState extends Equatable {
+  const SplashState([List props = const <dynamic>[]]) : super();
+}
 
 class SplashInitialState extends SplashState {
-  SplashInitialState();
+  const SplashInitialState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class SplashLoadingState extends SplashState {
-  SplashLoadingState();
+  const SplashLoadingState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class SplashLoadedState extends SplashState {
-  SplashLoadedState();
+  const SplashLoadedState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 extension SplashStateHelper on SplashState {

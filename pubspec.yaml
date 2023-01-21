@@ -24,6 +24,7 @@ dependencies:
   lottie: ^2.2.0
   intl: ^0.17.0
   dartz: ^0.10.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +36,7 @@ dev_dependencies:
   mocktail: ^0.3.0
   flutter_native_splash: ^2.1.1
   flutter_launcher_icons: ^0.10.0
+  bloc_test: ^9.1.0
 
 flutter:
   uses-material-design: true
