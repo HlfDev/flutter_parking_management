@@ -25,6 +25,11 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     _splashBloc.add(SplasLoadingEvent());
+
+    Future.delayed(
+      const Duration(seconds: 3),
+      () => _splashBloc.add(SplashLoadingFinishedEvent()),
+    );
   }
 
   @override
@@ -33,12 +38,13 @@ class _SplashPageState extends State<SplashPage> {
       body: BlocBuilder<SplashBloc, SplashState>(
         bloc: _splashBloc,
         builder: (context, state) {
-          return state.isSplashLoadingState
-              ? const SplashLoadingTemplate(
-                  title: SplashStrings.parkingManagement,
-                  animationAsset: AppAssetsJson.jsonRedCarDriving,
-                )
-              : const SizedBox.shrink();
+          return SplashTemplate(
+            title: SplashStrings.parkingManagement,
+            animationAsset: AppAssetsJson.jsonRedCarDriving,
+            isButtonVisibled: state.isSplashLoadedState,
+            onButtonTap: state.isSplashLoadedState ? _splashBloc.navigateToMainModule : null,
+            isTemplateVisible: (state.isSplashLoadedState || state.isSplashLoadingState),
+          );
         },
       ),
     );
