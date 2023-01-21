@@ -7,12 +7,12 @@ import '../interfaces/interfaces.dart';
 
 class ModularNavigatorServiceImpl implements NavigatorService {
   @override
-  Future push(String route, {Object? arguments}) {
+  Future<void> push(String route, {Object? arguments}) {
     return Modular.to.pushNamed(route, arguments: arguments);
   }
 
   @override
-  Future pushReplacement(String route, {Object? arguments}) {
+  Future<void> pushReplacement(String route, {Object? arguments}) {
     return Modular.to.pushReplacementNamed(route, arguments: arguments);
   }
 
@@ -24,5 +24,10 @@ class ModularNavigatorServiceImpl implements NavigatorService {
   @override
   void popUntil(String route) {
     Modular.to.popUntil(ModalRoute.withName(route));
+  }
+
+  @override
+  void navigate(String route) {
+    Modular.to.navigate(route);
   }
 }
