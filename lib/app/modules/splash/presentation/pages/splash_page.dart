@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../../../design_system/design_system.dart';
 import '../../splash.dart';
+import '../atomic/atomic.dart';
 import '../controller/controller.dart';
 
 class SplashPage extends StatefulWidget {
@@ -29,25 +29,18 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SplashBloc, SplashState>(
-      bloc: _splashBloc,
-      builder: (context, state) {
-        return Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Lottie.asset(AppAssetsJson.jsonRedCarDriving),
-              const SizedBox(height: AppSizes.h_24),
-              const TextAtom.medium(
-                text: SplashStrings.parkingManagement,
-                fontSize: 24,
-                color: AppColors.scale_05,
-              ),
-            ],
-          ),
-        );
-      },
+    return Scaffold(
+      body: BlocBuilder<SplashBloc, SplashState>(
+        bloc: _splashBloc,
+        builder: (context, state) {
+          return state.isSplashLoadingState
+              ? const SplashLoadingTemplate(
+                  title: SplashStrings.parkingManagement,
+                  animationAsset: AppAssetsJson.jsonRedCarDriving,
+                )
+              : const SizedBox.shrink();
+        },
+      ),
     );
   }
 }

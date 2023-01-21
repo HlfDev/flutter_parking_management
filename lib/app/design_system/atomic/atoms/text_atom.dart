@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../design_system.dart';
+
 class TextAtom extends StatelessWidget {
   final String text;
   final double fontSize;
@@ -16,7 +18,7 @@ class TextAtom extends StatelessWidget {
     Key? key,
     required this.text,
     required this.fontSize,
-    this.color = Colors.white,
+    this.color = AppColors.scale_05,
     this.fontWeight = FontWeight.w500,
     this.textAlign = TextAlign.center,
     this.maxLines,
@@ -26,7 +28,7 @@ class TextAtom extends StatelessWidget {
     Key? key,
     required this.text,
     required this.fontSize,
-    this.color = Colors.white,
+    this.color = AppColors.scale_05,
     this.fontWeight = FontWeight.w300,
     this.textAlign = TextAlign.center,
     this.maxLines,
@@ -36,7 +38,7 @@ class TextAtom extends StatelessWidget {
     Key? key,
     required this.text,
     required this.fontSize,
-    this.color = Colors.white,
+    this.color = AppColors.scale_05,
     this.fontWeight = FontWeight.w400,
     this.textAlign = TextAlign.center,
     this.maxLines,
@@ -46,7 +48,7 @@ class TextAtom extends StatelessWidget {
     Key? key,
     required this.text,
     required this.fontSize,
-    this.color = Colors.white,
+    this.color = AppColors.scale_05,
     this.fontWeight = FontWeight.w500,
     this.textAlign = TextAlign.center,
     this.maxLines,
@@ -56,7 +58,7 @@ class TextAtom extends StatelessWidget {
     Key? key,
     required this.text,
     required this.fontSize,
-    this.color = Colors.white,
+    this.color = AppColors.scale_05,
     this.fontWeight = FontWeight.w700,
     this.textAlign = TextAlign.center,
     this.maxLines,
