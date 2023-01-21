@@ -1,6 +1,8 @@
-import '../interfaces/interfaces.dart';
-
+// Package imports:
 import 'package:hive/hive.dart';
+
+// Project imports:
+import '../interfaces/interfaces.dart';
 
 class HiveCacheServiceImpl<Type> implements CacheService<Type> {
   final Box<Type> _box;

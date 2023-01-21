@@ -1,5 +1,7 @@
+// Package imports:
 import 'package:flutter_modular/flutter_modular.dart';
 
+// Project imports:
 import 'modules/core/core.dart';
 import 'modules/splash/splash.dart';
 

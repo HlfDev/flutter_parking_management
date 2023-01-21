@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
 
+// Project imports:
 import '../../design_system.dart';
 
 class TextAtom extends StatelessWidget {

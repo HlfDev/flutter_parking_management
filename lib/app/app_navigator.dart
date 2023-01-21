@@ -1,3 +1,4 @@
+// Project imports:
 import 'modules/core/services/interfaces/interfaces.dart';
 
 class AppNavigator {

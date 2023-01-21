@@ -1,9 +1,11 @@
+// Package imports:
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:flutter_parking_management/app/app.dart';
 import 'package:flutter_parking_management/app/modules/core/services/interfaces/interfaces.dart';
 import 'package:flutter_parking_management/app/modules/splash/presentation/controller/controller.dart';
-import 'package:flutter_test/flutter_test.dart';
-
 import '../../splash_mocks.dart';
 
 void main() {
