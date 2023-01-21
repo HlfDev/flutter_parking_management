@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+// Project imports:
+import 'design_system/design_system.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -15,6 +20,7 @@ class AppWidget extends StatelessWidget {
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
+      theme: appThemeLight,
     );
   }
 }
