@@ -1,17 +1,23 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../app.dart';
 
 part 'splash_event.dart';
 part 'splash_state.dart';
 
-class SplashBloc extends Bloc<SplashEvent, SplashState> {
+class SplashBloc extends Bloc<SplashEvent, SplashState> with Disposable {
   final AppNavigator _appNavigator;
 
   SplashBloc(this._appNavigator) : super(SplashInitialState()) {
-    on<SplashStartLoadEvent>((event, emit) => emit(SplashStartLoadState()));
-    on<SplashStopLoadEvent>((event, emit) => emit(SplashStopLoadState(isLoaded: true)));
+    on<SplasLoadingEvent>((event, emit) => emit(SplashLoadingState()));
+    on<SplashLoadingFinishedEvent>((_, __) => _navigateToMainModule());
   }
 
-  void navigateToMainModule() => _appNavigator.navigateToMainModule();
+  void _navigateToMainModule() => _appNavigator.navigateToMainModule();
+
+  @override
+  void dispose() {
+    super.close();
+  }
 }

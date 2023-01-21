@@ -2,10 +2,10 @@ part of 'splash_bloc.dart';
 
 abstract class SplashEvent {}
 
-class SplashStartLoadEvent extends SplashEvent {
-  SplashStartLoadEvent();
+class SplasLoadingEvent extends SplashEvent {
+  SplasLoadingEvent();
 }
 
-class SplashStopLoadEvent extends SplashEvent {
-  SplashStopLoadEvent();
+class SplashLoadingFinishedEvent extends SplashEvent {
+  SplashLoadingFinishedEvent();
 }
