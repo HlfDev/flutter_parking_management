@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../design_system/atomic/atoms/text_atom.dart';
 import '../../../../design_system/design_system.dart';
+import '../../splash.dart';
 import '../controller/controller.dart';
 
 class SplashPage extends StatefulWidget {
@@ -36,14 +37,12 @@ class _SplashPageState extends State<SplashPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
-                child: Lottie.asset('assets/jsons/red_car_driving_animation.json'),
-              ),
-              const SizedBox(height: cSize24),
+              Lottie.asset(AppAssetsJson.jsonRedCarDriving),
+              const SizedBox(height: AppSizes.h_24),
               const TextAtom.medium(
-                text: 'Parking Management',
+                text: SplashStrings.parkingManagement,
                 fontSize: 24,
-                color: AppColors.black,
+                color: AppColors.scale_05,
               ),
             ],
           ),
