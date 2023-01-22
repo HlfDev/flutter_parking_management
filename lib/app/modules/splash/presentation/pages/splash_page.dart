@@ -12,8 +12,6 @@ import '../atomic/atomic.dart';
 import '../controller/controller.dart';
 
 class SplashPage extends StatefulWidget {
-  static const routeName = '/';
-
   const SplashPage({super.key});
 
   @override

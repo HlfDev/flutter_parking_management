@@ -20,7 +20,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> with Disposable {
     on<SplashLoadingFinishedEvent>((event, emit) => emit(const SplashLoadedState()));
   }
 
-  void navigateToMainModule() => _appNavigator.navigateToMainModule();
+  void navigateToMainModule() => _appNavigator.navigateToMainModuleParkingLotPage();
 
   @override
   void dispose() {
