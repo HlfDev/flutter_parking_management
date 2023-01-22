@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:flutter_modular/flutter_modular.dart';
 
+// Project imports:
 import 'main.dart';
 import 'submodules/submodules.dart';
 
