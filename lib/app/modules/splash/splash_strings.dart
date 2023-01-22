@@ -1,7 +1,7 @@
 class SplashStrings {
   SplashStrings._();
 
-  static const parkingManagement = 'Parking Management';
+  static const parkingManagement = 'Gerenciador de Estacionamento';
 
-  static const enter = 'Entrar';
+  static const enter = 'Acessar';
 }
