@@ -2,13 +2,23 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 // Project imports:
-import 'presentation/controller/controller.dart';
-import 'presentation/pages/pages.dart';
+import 'data/data.dart';
+import 'domain/domain.dart';
+import 'presentation/presentation.dart';
 
 class ParkingLotModule extends Module {
   @override
   List<Bind> get binds => [
-        // Controller
+        // Datasources
+        Bind.lazySingleton((i) => ParkingLotLocalDatasourceImpl(i()), export: true),
+
+        // Repositories
+        Bind.lazySingleton((i) => ParkingLotRepositoryImpl(i()), export: true),
+
+        // Usecases
+        Bind.lazySingleton((i) => SaveParkingLotNewSpaceUseCaseImpl(i()), export: true),
+
+        // Controllers
         Bind.lazySingleton((i) => ParkingLotBloc(), export: true),
       ];
 
