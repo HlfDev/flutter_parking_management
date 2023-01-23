@@ -9,7 +9,7 @@ class MockGetListOfParkingLotSpaceUseCaseImpl extends Mock
     implements GetListOfParkingLotSpaceUseCaseImpl {}
 
 class MockRemoveParkingLotSpaceByKeyUseCaseImpl extends Mock
-    implements RemoveParkingLotSpaceByKeyUseCaseImpl {}
+    implements RemoveParkingLotSpaceByIdUseCaseImpl {}
 
 class MockSaveParkingLotNewSpaceUseCaseImpl extends Mock
     implements SaveParkingLotNewSpaceUseCaseImpl {}

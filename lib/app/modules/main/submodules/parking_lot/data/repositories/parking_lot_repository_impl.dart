@@ -18,8 +18,8 @@ class ParkingLotRepositoryImpl implements ParkingLotRepository {
       await _parkingLotLocalDatasource.saveParkingLotNewSpace(params);
 
       return const Right(null);
-    } catch (_) {
-      return Left(Failure(Exception()));
+    } catch (error) {
+      return Left(Failure(exception: error));
     }
   }
 
@@ -30,18 +30,18 @@ class ParkingLotRepositoryImpl implements ParkingLotRepository {
 
       return Right(result);
     } catch (error) {
-      return Left(Failure(Exception()));
+      return Left(Failure(exception: error));
     }
   }
 
   @override
-  Future<Either<Failure, void>> removeParkingLotSpaceByKey(String id) async {
+  Future<Either<Failure, void>> removeParkingLotSpaceById(String id) async {
     try {
       await _parkingLotLocalDatasource.removeParkingLotSpaceById(id);
 
       return const Right(null);
-    } catch (_) {
-      return Left(Failure(Exception()));
+    } catch (error) {
+      return Left(Failure(exception: error));
     }
   }
 }

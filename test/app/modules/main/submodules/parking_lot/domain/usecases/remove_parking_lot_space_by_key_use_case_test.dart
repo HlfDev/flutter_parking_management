@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/data/data.dart';
 
-import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/domain/usecases/remove_parking_lot_space_by_key_use_case.dart';
+import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/domain/usecases/remove_parking_lot_space_by_id_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -9,12 +9,12 @@ import '../../../../../../../test_mocks.dart';
 import '../../parking_lot_mocks.dart';
 
 void main() {
-  late RemoveParkingLotSpaceByKeyUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl;
+  late RemoveParkingLotSpaceByIdUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl;
   late ParkingLotRepositoryImpl parkingLotRepositoryImpl;
 
   setUpAll(() {
     parkingLotRepositoryImpl = MockParkingLotRepositoryImpl();
-    removeParkingLotSpaceByKeyUseCaseImpl = RemoveParkingLotSpaceByKeyUseCaseImpl(
+    removeParkingLotSpaceByKeyUseCaseImpl = RemoveParkingLotSpaceByIdUseCaseImpl(
       parkingLotRepositoryImpl,
     );
   });
@@ -27,14 +27,17 @@ void main() {
           'should return [Right] with a [null]',
           () async {
             //Arrange
-            when(() => parkingLotRepositoryImpl.removeParkingLotSpaceByKey(''))
+            when(() =>
+                    parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id))
                 .thenAnswer((_) async => const Right(null));
 
             //Act
-            final result = await removeParkingLotSpaceByKeyUseCaseImpl('');
+            final result = await removeParkingLotSpaceByKeyUseCaseImpl(parkingSpaceEntityMock.id);
 
             //Assert
-            verify(() => parkingLotRepositoryImpl.removeParkingLotSpaceByKey('')).called(1);
+            verify(
+              () => parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id),
+            ).called(1);
             expect(result, const Right(null));
           },
         );
@@ -46,14 +49,16 @@ void main() {
       () {
         test('should return [Left] with a [Failure]', () async {
           //Arrange
-          when(() => parkingLotRepositoryImpl.removeParkingLotSpaceByKey(''))
+          when(() => parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id))
               .thenAnswer((_) async => Left(failureMock));
 
           //Act
-          final result = await removeParkingLotSpaceByKeyUseCaseImpl('');
+          final result = await removeParkingLotSpaceByKeyUseCaseImpl(parkingSpaceEntityMock.id);
 
           //Assert
-          verify(() => parkingLotRepositoryImpl.removeParkingLotSpaceByKey('')).called(1);
+          verify(
+            () => parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id),
+          ).called(1);
           expect(result, Left(failureMock));
         });
       },

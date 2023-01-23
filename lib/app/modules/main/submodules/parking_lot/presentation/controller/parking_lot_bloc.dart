@@ -13,12 +13,12 @@ part 'parking_lot_state.dart';
 class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
   final SaveParkingLotNewSpaceUseCaseImpl _saveParkingLotNewSpaceUseCaseImpl;
   final GetListOfParkingLotSpaceUseCaseImpl _getListOfParkingLotSpaceUseCaseImpl;
-  final RemoveParkingLotSpaceByKeyUseCaseImpl _removeParkingLotSpaceByIdUseCaseImpl;
+  final RemoveParkingLotSpaceByIdUseCaseImpl _removeParkingLotSpaceByIdUseCaseImpl;
 
   ParkingLotBloc({
     required SaveParkingLotNewSpaceUseCaseImpl saveParkingLotNewSpaceUseCaseImpl,
     required GetListOfParkingLotSpaceUseCaseImpl getListOfParkingLotSpaceUseCaseImpl,
-    required RemoveParkingLotSpaceByKeyUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl,
+    required RemoveParkingLotSpaceByIdUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl,
   })  : _saveParkingLotNewSpaceUseCaseImpl = saveParkingLotNewSpaceUseCaseImpl,
         _getListOfParkingLotSpaceUseCaseImpl = getListOfParkingLotSpaceUseCaseImpl,
         _removeParkingLotSpaceByIdUseCaseImpl = removeParkingLotSpaceByKeyUseCaseImpl,

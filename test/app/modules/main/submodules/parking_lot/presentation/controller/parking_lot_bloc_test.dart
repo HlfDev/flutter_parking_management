@@ -13,7 +13,7 @@ import '../../parking_lot_mocks.dart';
 void main() {
   late ParkingLotBloc parkingLotBloc;
   late GetListOfParkingLotSpaceUseCaseImpl getListOfParkingLotSpaceUseCaseImpl;
-  late RemoveParkingLotSpaceByKeyUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl;
+  late RemoveParkingLotSpaceByIdUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl;
   late SaveParkingLotNewSpaceUseCaseImpl saveParkingLotNewSpaceUseCaseImpl;
 
   setUp(() {
@@ -67,7 +67,7 @@ void main() {
         return parkingLotBloc;
       },
       act: (bloc) {
-        bloc.add(const ParkingLotAddParkingEntityEvent(code: '123'));
+        bloc.add(ParkingLotAddParkingEntityEvent(code: parkingSpaceEntityMock.code));
       },
       expect: () => [
         ParkingLotLoadingState(),
@@ -86,7 +86,10 @@ void main() {
         return parkingLotBloc;
       },
       act: (bloc) {
-        bloc.add(const ParkingLotRemoveParkingEntityEvent(index: 0, parkingSpaceId: ''));
+        bloc.add(ParkingLotRemoveParkingEntityEvent(
+          index: 0,
+          parkingSpaceId: parkingSpaceEntityMock.id,
+        ));
       },
       expect: () => [
         ParkingLotLoadingState(),

@@ -8,5 +8,5 @@ import '../entities/parking_space_entity.dart';
 abstract class ParkingLotRepository {
   Future<Either<Failure, void>> saveParkingLotNewSpace(ParkingSpaceEntity params);
   Future<Either<Failure, List<ParkingSpaceEntity>?>> getListOfParkingLotSpace();
-  Future<Either<Failure, void>> removeParkingLotSpaceByKey(String id);
+  Future<Either<Failure, void>> removeParkingLotSpaceById(String id);
 }

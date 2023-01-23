@@ -18,7 +18,7 @@ class ParkingLotModule extends Module {
         // Usecases
         Bind.lazySingleton((i) => SaveParkingLotNewSpaceUseCaseImpl(i()), export: true),
         Bind.lazySingleton((i) => GetListOfParkingLotSpaceUseCaseImpl(i()), export: true),
-        Bind.lazySingleton((i) => RemoveParkingLotSpaceByKeyUseCaseImpl(i()), export: true),
+        Bind.lazySingleton((i) => RemoveParkingLotSpaceByIdUseCaseImpl(i()), export: true),
 
         // Controllers
         Bind.lazySingleton(
