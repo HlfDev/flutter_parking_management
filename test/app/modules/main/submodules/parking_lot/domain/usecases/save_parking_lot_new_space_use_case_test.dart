@@ -21,7 +21,7 @@ void main() {
 
   group('[SaveParkingLotNewSpaceUseCaseImpl]', () {
     group(
-      'when the call to [ParkingLotRepositoryImpl] method [saveParkingLotNewSpaceUseCase] is successfull',
+      'when the call to [ParkingLotRepositoryImpl] method [saveParkingLotNewSpace] is successfull',
       () {
         test(
           'should return [Right] with a [null]',
