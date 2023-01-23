@@ -10,7 +10,7 @@ class CoreModule extends Module {
   @override
   List<Bind> get binds => [
         //Services
-        Bind.lazySingleton((i) => HiveCacheServiceImpl(i()), export: true),
+        Bind.lazySingleton((i) => HiveCacheServiceImpl(), export: true),
         Bind.lazySingleton((i) => ModularNavigatorServiceImpl(), export: true),
 
         // Navigator

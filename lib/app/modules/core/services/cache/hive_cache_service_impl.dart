@@ -1,31 +1,50 @@
 // Package imports:
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 // Project imports:
 import '../interfaces/interfaces.dart';
 
-class HiveCacheServiceImpl<Type> implements CacheService<Type> {
-  final Box<Type> _box;
-
-  HiveCacheServiceImpl(this._box);
+class HiveCacheServiceImpl implements CacheService {
+  HiveCacheServiceImpl();
 
   @override
-  Future<Type> get(String key) async {
-    return (_box.get(key)) as Type;
+  Future<void> register<Type>(String boxName) async {
+    if (!Hive.isBoxOpen(boxName)) {
+      await Hive.openBox<Type>(boxName);
+    }
   }
 
   @override
-  Future<void> set(String key, Type value) async {
-    await _box.put(key, value);
+  dynamic get<Type>(String boxKey, String key) {
+    final box = Hive.box<Type>(boxKey);
+
+    return (box.get(key));
   }
 
   @override
-  Future<void> remove(String key) async {
-    await _box.delete(key);
+  Future<List<Type>> getAll<Type>(String boxKey) async {
+    final box = Hive.box<Type>(boxKey);
+
+    return box.values.toList();
   }
 
   @override
-  Future<void> clear() async {
-    await _box.clear();
+  Future<void> set<Type>(String boxKey, String key, dynamic value) async {
+    final box = Hive.box<Type>(boxKey);
+
+    await box.put(key, value);
+  }
+
+  @override
+  Future<void> remove<Type>(String boxKey, String key) async {
+    final box = Hive.box<Type>(boxKey);
+
+    await box.delete(key);
+  }
+
+  @override
+  Future<void> clear<Type>(String boxKey) async {
+    final box = Hive.box<Type>(boxKey);
+    await box.clear();
   }
 }
