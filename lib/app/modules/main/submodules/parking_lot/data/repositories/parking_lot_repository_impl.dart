@@ -20,4 +20,26 @@ class ParkingLotRepositoryImpl implements ParkingLotRepository {
       return Left(Failure(Exception()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<ParkingSpaceEntity>?>> getListOfParkingLotSpace() async {
+    try {
+      final result = await _parkingLotLocalDatasource.getListOfParkingLotSpace();
+
+      return Right(result);
+    } catch (error) {
+      return Left(Failure(Exception()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> removeParkingLotSpaceByKey(String id) async {
+    try {
+      await _parkingLotLocalDatasource.removeParkingLotSpaceById(id);
+
+      return const Right(null);
+    } catch (_) {
+      return Left(Failure(Exception()));
+    }
+  }
 }

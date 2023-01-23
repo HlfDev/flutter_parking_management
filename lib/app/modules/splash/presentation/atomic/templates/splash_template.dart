@@ -35,8 +35,6 @@ class SplashTemplate extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(AppSizes.r_24),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Spacer(),
               SizedBox(
@@ -44,7 +42,7 @@ class SplashTemplate extends StatelessWidget {
                 child: LottieAssetAtom(asset: animationAsset),
               ),
               const SizedBox(height: AppSizes.h_24),
-              TextAtom.medium(
+              TextAtom.bold(
                 text: title,
                 fontSize: AppSizes.h_24,
               ),
