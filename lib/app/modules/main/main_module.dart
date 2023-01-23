@@ -30,7 +30,7 @@ class MainModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (context, args) => MainPage(),
+      child: (context, args) => const MainPage(),
       transition: TransitionType.noTransition,
       children: [
         ChildRoute(

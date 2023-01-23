@@ -7,8 +7,6 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../../../../test_mocks.dart';
 import '../../parking_lot_mocks.dart';
 
-class MockCacheService extends Mock implements CacheService {}
-
 void main() {
   late ParkingLotLocalDatasourceImpl parkingLotLocalDatasourceImpl;
   late CacheService cacheService;
