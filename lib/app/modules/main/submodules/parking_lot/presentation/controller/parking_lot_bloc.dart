@@ -54,7 +54,7 @@ class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
     ParkingLotAddParkingEntityEvent event,
     Emitter<ParkingLotState> emit,
   ) async {
-    await _saveParkingLotNewSpaceUseCaseImpl(
+    final result = await _saveParkingLotNewSpaceUseCaseImpl(
       ParkingSpaceEntity(
         id: const Uuid().v4(),
         code: event.code,
@@ -62,7 +62,12 @@ class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
       ),
     );
 
-    add(const ParkingLotLoadParkingEntityEvent());
+    result.fold(
+      (failure) => emit(ParkingLotFailureState()),
+      (_) {
+        add(const ParkingLotLoadParkingEntityEvent());
+      },
+    );
   }
 
   Future<void> _removeParkingLotSpaceById(
