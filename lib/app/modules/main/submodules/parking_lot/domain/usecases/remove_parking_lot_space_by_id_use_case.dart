@@ -9,13 +9,13 @@ abstract class RemoveParkingLotSpaceByKeyUseCase {
   Future<Either<Failure, void>> call(String id);
 }
 
-class RemoveParkingLotSpaceByKeyUseCaseImpl implements RemoveParkingLotSpaceByKeyUseCase {
+class RemoveParkingLotSpaceByIdUseCaseImpl implements RemoveParkingLotSpaceByKeyUseCase {
   final ParkingLotRepository _parkingLotRepository;
 
-  RemoveParkingLotSpaceByKeyUseCaseImpl(this._parkingLotRepository);
+  RemoveParkingLotSpaceByIdUseCaseImpl(this._parkingLotRepository);
 
   @override
   Future<Either<Failure, void>> call(String id) async {
-    return _parkingLotRepository.removeParkingLotSpaceByKey(id);
+    return _parkingLotRepository.removeParkingLotSpaceById(id);
   }
 }
