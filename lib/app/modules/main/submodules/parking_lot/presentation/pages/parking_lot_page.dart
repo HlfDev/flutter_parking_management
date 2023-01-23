@@ -80,9 +80,13 @@ class _ParkingLotPageState extends State<ParkingLotPage> {
                   parkingSpaceEntityList: state.parkingSpaceEntityList,
                   onAddParkingSpaceTap: (code) {
                     FocusScope.of(context).unfocus();
-                    state.analyseIfExistsCode(code)
-                        ? _showExistingParkingSpaceDialog()
-                        : _parkingLotBloc.add(ParkingLotAddParkingEntityEvent(code: code));
+
+                    if (state.analyseIfExistsCode(code)) {
+                      _showExistingParkingSpaceDialog();
+                    } else {
+                      _parkingLotBloc.add(ParkingLotAddParkingEntityEvent(code: code));
+                      _controllerParkingSpace.clear();
+                    }
                   },
                   onListTitleTap: (id, index, code) => _showDeleteDialog(id, index, code),
                 )

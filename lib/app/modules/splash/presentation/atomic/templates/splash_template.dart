@@ -44,7 +44,7 @@ class SplashTemplate extends StatelessWidget {
               const SizedBox(height: AppSizes.h_24),
               TextAtom.bold(
                 text: title,
-                fontSize: AppSizes.h_24,
+                fontSize: AppSizes.h_32,
               ),
               const Spacer(),
               SplashButtonVisibilityMolecule(

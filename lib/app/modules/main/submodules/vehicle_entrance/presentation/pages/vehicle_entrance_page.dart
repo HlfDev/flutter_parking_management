@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+import '../../../../../../design_system/design_system.dart';
+import '../../../vehicle_exit/presentation/pages/page.dart';
+
 class VehicleEntrancePage extends StatelessWidget {
   static const routePath = '/veicle-entrance';
 
@@ -9,9 +12,7 @@ class VehicleEntrancePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text(routePath),
-      ),
+      body: NewFeatureMolecule(asset: AppAssetsVectors.svgUnderConstruction01),
     );
   }
 }

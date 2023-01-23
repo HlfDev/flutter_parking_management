@@ -18,7 +18,7 @@ class ParkingLotEmptyEspacesMolecule extends StatelessWidget {
         const SizedBox(height: AppSizes.h_16),
         SizedBox(
           height: (AppSizes.mediaQuery(context).height / 6),
-          child: SvgPicture.asset(AppAssetsVectors.jsonNoDataLogo),
+          child: SvgPicture.asset(AppAssetsVectors.svgNoDataLogo),
         ),
         const SizedBox(height: AppSizes.h_16),
         const TextAtom.bold(

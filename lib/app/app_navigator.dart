@@ -10,4 +10,12 @@ class AppNavigator {
   Future<void> navigateToMainModuleParkingLotPage() async {
     _navigatorService.navigate(MainModule.parkingLotPagePath);
   }
+
+  Future<void> navigateToMainModuleVehicleEntrancePage() async {
+    _navigatorService.navigate(MainModule.vehicleEntrancePagePath);
+  }
+
+  Future<void> navigateToMainModuleVehicleExitPage() async {
+    _navigatorService.navigate(MainModule.vehicleExitPagePath);
+  }
 }

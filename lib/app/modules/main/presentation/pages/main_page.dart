@@ -5,38 +5,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 // Project imports:
-import '../../../../design_system/design_system.dart';
-import '../../main.dart';
 
-class MainPage extends StatelessWidget {
+import '../atomic/molecules/main_tab_bar_molecule.dart';
+import '../controller/controller.dart';
+
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
   @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
+  final MainBloc _mainBloc = Modular.get<MainBloc>();
+
+  late TabController _tabController;
+
+  void _initializeTabController() => _tabController = TabController(length: 3, vsync: this);
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeTabController();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.primary,
-          bottom: TabBar(
-            tabs: [
-              ListTile(
-                title: const Text('01'),
-                onTap: () => Modular.to.navigate(MainModule.parkingLotPagePath),
-              ),
-              ListTile(
-                title: const Text('02'),
-                onTap: () => Modular.to.navigate(MainModule.vehicleEntrancePagePath),
-              ),
-              ListTile(
-                title: const Text('03'),
-                onTap: () => Modular.to.navigate(MainModule.vehicleExitPagePath),
-              ),
-            ],
-          ),
-        ),
-        body: const RouterOutlet(),
+    return Scaffold(
+      appBar: MainTabBarMolecule(
+        tabController: _tabController,
+        onTapOption: (index) => _mainBloc.add(ChangeCurrentPageEvent(index: index)),
       ),
+      body: const RouterOutlet(),
     );
   }
 }

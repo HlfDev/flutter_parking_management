@@ -9,6 +9,7 @@ class AppStrings {
   static const String toRemove = 'Remover';
   static const String inUse = 'Em Uso';
   static const String available = 'Disponivel';
+  static const String underDevelopment = 'Em Desenvolvimento';
 
   static String addHashTag(String text) => '#$text';
 }
