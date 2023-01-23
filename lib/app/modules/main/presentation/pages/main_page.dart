@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 // Project imports:
-
 import '../atomic/molecules/main_tab_bar_molecule.dart';
 import '../controller/controller.dart';
+
+// Project imports:
+
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

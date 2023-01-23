@@ -1,9 +1,11 @@
-import 'package:flutter_parking_management/app/modules/core/services/interfaces/interfaces.dart';
-import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/data/data.dart';
-import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/domain/domain.dart';
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+// Project imports:
+import 'package:flutter_parking_management/app/modules/core/services/interfaces/interfaces.dart';
+import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/data/data.dart';
+import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/domain/domain.dart';
 import '../../../../../../../test_mocks.dart';
 import '../../parking_lot_mocks.dart';
 
