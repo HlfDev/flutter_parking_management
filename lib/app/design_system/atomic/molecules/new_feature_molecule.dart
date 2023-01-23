@@ -2,23 +2,11 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 // Project imports:
-import '../../../../../../design_system/design_system.dart';
-
-class VehicleExitPage extends StatelessWidget {
-  static const routePath = '/vehicle-exit';
-
-  const VehicleExitPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: NewFeatureMolecule(asset: AppAssetsVectors.svgUnderConstruction02),
-    );
-  }
-}
+import '../../../app_strings.dart';
+import '../../design_system.dart';
 
 class NewFeatureMolecule extends StatelessWidget {
   final String asset;
@@ -36,7 +24,7 @@ class NewFeatureMolecule extends StatelessWidget {
         Expanded(child: SvgPicture.asset(asset)),
         const SizedBox(height: AppSizes.h_32),
         const TextAtom.bold(
-          text: 'Em Desenvolvimento',
+          text: AppStrings.underDevelopment,
           fontSize: AppSizes.h_32,
         ),
         const Spacer(),

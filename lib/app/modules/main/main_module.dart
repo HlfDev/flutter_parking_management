@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 // Project imports:
 import 'main.dart';
+import 'presentation/controller/main_bloc.dart';
 import 'submodules/submodules.dart';
 
 class MainModule extends Module {
@@ -20,22 +21,32 @@ class MainModule extends Module {
       ];
 
   @override
+  List<Bind> get binds => [
+        // Controller
+        Bind.lazySingleton((i) => MainBloc(i())),
+      ];
+
+  @override
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
       child: (context, args) => const MainPage(),
+      transition: TransitionType.noTransition,
       children: [
         ChildRoute(
           ParkingLotPage.routePath,
           child: (context, args) => const ParkingLotPage(),
+          transition: TransitionType.noTransition,
         ),
         ChildRoute(
           VehicleEntrancePage.routePath,
           child: (context, args) => const VehicleEntrancePage(),
+          transition: TransitionType.noTransition,
         ),
         ChildRoute(
           VehicleExitPage.routePath,
           child: (context, args) => const VehicleExitPage(),
+          transition: TransitionType.noTransition,
         ),
       ],
     ),
