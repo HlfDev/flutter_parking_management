@@ -19,44 +19,42 @@ void main() {
     );
   });
 
-  group('[GetListOfParkingLotSpaceUseCaseImpl]', () {
-    group(
-      'when the call to [ParkingLotRepositoryImpl] method [getListOfParkingLotSpace] is successfull',
-      () {
-        test(
-          'should return [Right] with a [List<ParkingSpaceEntity>]',
-          () async {
-            //Arrange
-            when(() => parkingLotRepositoryImpl.getListOfParkingLotSpace())
-                .thenAnswer((_) async => const Right(parkingSpaceEntityListMock));
-
-            //Act
-            final result = await getListOfParkingLotSpaceUseCaseImpl();
-
-            //Assert
-            verify(() => parkingLotRepositoryImpl.getListOfParkingLotSpace()).called(1);
-            expect(result, const Right(parkingSpaceEntityListMock));
-          },
-        );
-      },
-    );
-
-    group(
-      'when the call to [ParkingLotRepositoryImpl] method [getListOfParkingLotSpace] is unsuccessfull',
-      () {
-        test('should return [Left] with a [Failure]', () async {
+  group(
+    'when the call to [ParkingLotRepositoryImpl] method [getListOfParkingLotSpace] is successfull',
+    () {
+      test(
+        'should return [Right] with a [List<ParkingSpaceEntity>]',
+        () async {
           //Arrange
           when(() => parkingLotRepositoryImpl.getListOfParkingLotSpace())
-              .thenAnswer((_) async => Left(failureMock));
+              .thenAnswer((_) async => const Right(parkingSpaceEntityListMock));
 
           //Act
           final result = await getListOfParkingLotSpaceUseCaseImpl();
 
           //Assert
           verify(() => parkingLotRepositoryImpl.getListOfParkingLotSpace()).called(1);
-          expect(result, Left(failureMock));
-        });
-      },
-    );
-  });
+          expect(result, const Right(parkingSpaceEntityListMock));
+        },
+      );
+    },
+  );
+
+  group(
+    'when the call to [ParkingLotRepositoryImpl] method [getListOfParkingLotSpace] is unsuccessfull',
+    () {
+      test('should return [Left] with a [Failure]', () async {
+        //Arrange
+        when(() => parkingLotRepositoryImpl.getListOfParkingLotSpace())
+            .thenAnswer((_) async => Left(failureMock));
+
+        //Act
+        final result = await getListOfParkingLotSpaceUseCaseImpl();
+
+        //Assert
+        verify(() => parkingLotRepositoryImpl.getListOfParkingLotSpace()).called(1);
+        expect(result, Left(failureMock));
+      });
+    },
+  );
 }

@@ -21,101 +21,87 @@ void main() {
         .thenAnswer((_) async => returnsNormally);
   });
 
-  group('ParkingLotLocalDatasourceImpl', () {
-    group('when [getListOfParkingLotSpace] function is called, ', () {
-      group('and when the call to [CacheService] is successfull', () {
-        test('should return a [List<ParkingSpaceEntity>]', () async {
-          //Arrange
-          when(() => cacheService.getAll<ParkingSpaceEntity>(any())).thenAnswer(
-            (_) async => parkingSpaceEntityListMock,
-          );
+  group('when [getListOfParkingLotSpace] function is called, ', () {
+    test(
+      'and when the call to [CacheService] is successfull, should return a [List<ParkingSpaceEntity>]',
+      () async {
+        //Arrange
+        when(() => cacheService.getAll<ParkingSpaceEntity>(any())).thenAnswer(
+          (_) async => parkingSpaceEntityListMock,
+        );
 
-          //Act
-          final result = await parkingLotLocalDatasourceImpl.getListOfParkingLotSpace();
+        //Act
+        final result = await parkingLotLocalDatasourceImpl.getListOfParkingLotSpace();
 
-          //Assert
-          expect(result, isA<List<ParkingSpaceEntity>>());
-        });
+        //Assert
+        expect(result, isA<List<ParkingSpaceEntity>>());
+      },
+    );
 
-        group('when the call to [CacheService] is unsuccessfull', () {
-          test('should throw a [Exception]', () {
-            //Arrange
-            when(() => cacheService.getAll<ParkingSpaceEntity>(any())).thenThrow(exceptionMock);
+    test('and when the call to [CacheService] is unsuccessfull, should throw a [Exception]', () {
+      //Arrange
+      when(() => cacheService.getAll<ParkingSpaceEntity>(any())).thenThrow(exceptionMock);
 
-            //Act
-            final result = parkingLotLocalDatasourceImpl.getListOfParkingLotSpace();
+      //Act
+      final result = parkingLotLocalDatasourceImpl.getListOfParkingLotSpace();
 
-            //Assert
-            expect(result, throwsA(isA<Exception>()));
-          });
-        });
-      });
+      //Assert
+      expect(result, throwsA(isA<Exception>()));
+    });
+  });
+
+  group('when [saveParkingLotNewSpace] function is called, ', () {
+    test('and when the call to [CacheService] is successfull, should return a [null]', () async {
+      //Arrange
+      when(() => cacheService.set<ParkingSpaceEntity>(any(), any(), any())).thenAnswer(
+        (_) async => returnsNormally,
+      );
+
+      //Act
+      final result = parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
+
+      //Assert
+      expect(result, isA<Future<void>>());
     });
 
-    group('when [saveParkingLotNewSpace] function is called, ', () {
-      group('and when the call to [CacheService] is successfull', () {
-        test('should return a [null]', () async {
-          //Arrange
-          when(() => cacheService.set<ParkingSpaceEntity>(any(), any(), any())).thenAnswer(
-            (_) async => returnsNormally,
-          );
+    test('and when the call to [CacheService] is unsuccessfull, should throw a [Exception]', () {
+      //Arrange
+      when(() => cacheService.set<ParkingSpaceEntity>(any(), any(), any()))
+          .thenThrow(exceptionMock);
 
-          //Act
-          final result =
-              parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
+      //Act
+      final result = parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
 
-          //Assert
-          expect(result, isA<Future<void>>());
-        });
+      //Assert
+      expect(result, throwsA(isA<Exception>()));
+    });
+  });
 
-        group('when the call to [CacheService] is unsuccessfull', () {
-          test('should throw a [Exception]', () {
-            //Arrange
-            when(() => cacheService.set<ParkingSpaceEntity>(any(), any(), any()))
-                .thenThrow(exceptionMock);
+  group('when [removeParkingLotSpaceById] function is called, ', () {
+    test('and when the call to [CacheService] is successfull, should return a [null]', () async {
+      //Arrange
+      when(() => cacheService.remove<ParkingSpaceEntity>(any(), any())).thenAnswer(
+        (_) async => returnsNormally,
+      );
 
-            //Act
-            final result =
-                parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
+      //Act
+      final result =
+          parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
 
-            //Assert
-            expect(result, throwsA(isA<Exception>()));
-          });
-        });
-      });
+      //Assert
+      expect(result, isA<Future<void>>());
     });
 
-    group('when [removeParkingLotSpaceById] function is called, ', () {
-      group('and when the call to [CacheService] is successfull', () {
-        test('should return a [null]', () async {
-          //Arrange
-          when(() => cacheService.remove<ParkingSpaceEntity>(any(), any())).thenAnswer(
-            (_) async => returnsNormally,
-          );
+    test('and when the call to [CacheService] is unsuccessfull, should throw a [Exception]', () {
+      //Arrange
+      when(() => cacheService.remove<ParkingSpaceEntity>(any(), any())).thenThrow(exceptionMock);
 
-          //Act
-          final result =
-              parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
+      //Act
+      final result =
+          parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
 
-          //Assert
-          expect(result, isA<Future<void>>());
-        });
-
-        group('when the call to [CacheService] is unsuccessfull', () {
-          test('should throw a [Exception]', () {
-            //Arrange
-            when(() => cacheService.remove<ParkingSpaceEntity>(any(), any()))
-                .thenThrow(exceptionMock);
-
-            //Act
-            final result =
-                parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
-
-            //Assert
-            expect(result, throwsA(isA<Exception>()));
-          });
-        });
-      });
+      //Assert
+      expect(result, throwsA(isA<Exception>()));
     });
   });
 }

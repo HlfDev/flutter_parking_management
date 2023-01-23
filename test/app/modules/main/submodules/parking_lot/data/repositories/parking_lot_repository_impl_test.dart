@@ -19,8 +19,9 @@ void main() {
     group(
       'when the [ParkingLotLocalDatasourceImpl] method [getListOfParkingLotSpace] is called',
       () {
-        group('and when the call is successfull', () {
-          test('should return [Right] with [List<ParkingSpaceEntity>]', () async {
+        test(
+          'and when the call is successfull, should return [Right] with [List<ParkingSpaceEntity>]',
+          () async {
             //Arrange
             when(() => parkingLotLocalDatasourceImpl.getListOfParkingLotSpace()).thenAnswer(
               (_) async => parkingSpaceEntityListMock,
@@ -32,99 +33,91 @@ void main() {
             //Assert
             verify(() => parkingLotLocalDatasourceImpl.getListOfParkingLotSpace()).called(1);
             expect(result, const Right(parkingSpaceEntityListMock));
-          });
-        });
-        group('and when the call is unsuccessfull', () {
-          test('should return [Left] with a [Failure]', () async {
-            //Arrange
-            when(() => parkingLotLocalDatasourceImpl.getListOfParkingLotSpace())
-                .thenThrow(exceptionMock);
+          },
+        );
 
-            //Act
-            final result = await parkingLotRepositoryImpl.getListOfParkingLotSpace();
+        test('and when the call is unsuccessfull, should return [Left] with a [Failure]', () async {
+          //Arrange
+          when(() => parkingLotLocalDatasourceImpl.getListOfParkingLotSpace())
+              .thenThrow(exceptionMock);
 
-            //Assert
-            verify(() => parkingLotLocalDatasourceImpl.getListOfParkingLotSpace()).called(1);
-            expect(result, Left(failureMock));
-          });
+          //Act
+          final result = await parkingLotRepositoryImpl.getListOfParkingLotSpace();
+
+          //Assert
+          verify(() => parkingLotLocalDatasourceImpl.getListOfParkingLotSpace()).called(1);
+          expect(result, Left(failureMock));
         });
       },
     );
 
     group('when the datasource method [saveParkingLotNewSpace] is called', () {
-      group('and when the call is successfull', () {
-        test('should return [Right] with [null]', () async {
-          //Arrange
-          when(() => parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
-              .thenAnswer((_) async => returnsNormally);
+      test('and when the call is successfull, should return [Right] with [null]', () async {
+        //Arrange
+        when(() => parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
+            .thenAnswer((_) async => returnsNormally);
 
-          //Act
-          final result =
-              await parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
+        //Act
+        final result =
+            await parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
 
-          //Assert
-          verify(
-            () => parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock),
-          ).called(1);
-          expect(result, const Right(null));
-        });
+        //Assert
+        verify(
+          () => parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock),
+        ).called(1);
+        expect(result, const Right(null));
       });
-      group('and when the call is unsuccessfull', () {
-        test('should return [Left] with a [Failure]', () async {
-          //Arrange
-          when(() => parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
-              .thenThrow(exceptionMock);
 
-          //Act
-          final result =
-              await parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
+      test('and when the call is unsuccessfull, should return [Left] with a [Failure]', () async {
+        //Arrange
+        when(() => parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
+            .thenThrow(exceptionMock);
 
-          //Assert
-          verify(
-            () => parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock),
-          ).called(1);
-          expect(result, Left(failureMock));
-        });
+        //Act
+        final result =
+            await parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
+
+        //Assert
+        verify(
+          () => parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock),
+        ).called(1);
+        expect(result, Left(failureMock));
       });
     });
 
     group('when the datasource method [removeParkingLotSpaceById] is called', () {
-      group('and when the call is successfull', () {
-        test('should return [Right] with [null]', () async {
-          //Arrange
-          when(() => parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(
-                parkingSpaceEntityMock.id,
-              )).thenAnswer((_) async => returnsNormally);
+      test('and when the call is successfull, should return [Right] with [null]', () async {
+        //Arrange
+        when(() => parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(
+              parkingSpaceEntityMock.id,
+            )).thenAnswer((_) async => returnsNormally);
 
-          //Act
-          final result =
-              await parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
+        //Act
+        final result =
+            await parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
 
-          //Assert
-          verify(
-            () =>
-                parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id),
-          ).called(1);
-          expect(result, const Right(null));
-        });
+        //Assert
+        verify(
+          () => parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id),
+        ).called(1);
+        expect(result, const Right(null));
       });
-      group('and when the call is unsuccessfull', () {
-        test('should return [Left] with a [Failure]', () async {
-          //Arrange
-          when(() => parkingLotLocalDatasourceImpl
-              .removeParkingLotSpaceById(parkingSpaceEntityMock.id)).thenThrow(exceptionMock);
 
-          //Act
-          final result =
-              await parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
+      test('and when the call is unsuccessfull, should return [Left] with a [Failure]', () async {
+        //Arrange
+        when(() =>
+                parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id))
+            .thenThrow(exceptionMock);
 
-          //Assert
-          verify(
-            () =>
-                parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id),
-          ).called(1);
-          expect(result, Left(failureMock));
-        });
+        //Act
+        final result =
+            await parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
+
+        //Assert
+        verify(
+          () => parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id),
+        ).called(1);
+        expect(result, Left(failureMock));
       });
     });
   });

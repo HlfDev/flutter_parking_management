@@ -19,46 +19,37 @@ void main() {
     );
   });
 
-  group('[SaveParkingLotNewSpaceUseCaseImpl]', () {
-    group(
-      'when the call to [ParkingLotRepositoryImpl] method [saveParkingLotNewSpace] is successfull',
-      () {
-        test(
-          'should return [Right] with a [null]',
-          () async {
-            //Arrange
-            when(() => parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
-                .thenAnswer((_) async => const Right(null));
+  test(
+    'when the call to [ParkingLotRepositoryImpl] method [saveParkingLotNewSpace] is successfull, should return [Right] with a [null]',
+    () async {
+      //Arrange
+      when(() => parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
+          .thenAnswer((_) async => const Right(null));
 
-            //Act
-            final result = await saveParkingLotNewSpaceUseCase(parkingSpaceEntityMock);
+      //Act
+      final result = await saveParkingLotNewSpaceUseCase(parkingSpaceEntityMock);
 
-            //Assert
-            verify(() => parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
-                .called(1);
-            expect(result, const Right(null));
-          },
-        );
-      },
-    );
+      //Assert
+      verify(() => parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
+          .called(1);
+      expect(result, const Right(null));
+    },
+  );
 
-    group(
-      'when the call to [ParkingLotRepositoryImpl] method [saveParkingLotNewSpace] is unsuccessfull',
-      () {
-        test('should return [Left] with a [Failure]', () async {
-          //Arrange
-          when(() => parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
-              .thenAnswer((_) async => Left(failureMock));
+  test(
+    'when the call to [ParkingLotRepositoryImpl] method [saveParkingLotNewSpace] is unsuccessfull, should return [Left] with a [Failure]',
+    () async {
+      //Arrange
+      when(() => parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
+          .thenAnswer((_) async => Left(failureMock));
 
-          //Act
-          final result = await saveParkingLotNewSpaceUseCase(parkingSpaceEntityMock);
+      //Act
+      final result = await saveParkingLotNewSpaceUseCase(parkingSpaceEntityMock);
 
-          //Assert
-          verify(() => parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
-              .called(1);
-          expect(result, Left(failureMock));
-        });
-      },
-    );
-  });
+      //Assert
+      verify(() => parkingLotRepositoryImpl.saveParkingLotNewSpace(parkingSpaceEntityMock))
+          .called(1);
+      expect(result, Left(failureMock));
+    },
+  );
 }
