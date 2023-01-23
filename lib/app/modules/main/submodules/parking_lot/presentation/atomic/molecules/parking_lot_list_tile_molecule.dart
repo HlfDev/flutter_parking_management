@@ -1,8 +1,9 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import '../../../../../../../app_strings.dart';
 import '../../../../../../../design_system/design_system.dart';
-
 import '../../../domain/domain.dart';
 
 class ParkingLotListTileMolecule extends StatelessWidget {
@@ -21,9 +22,9 @@ class ParkingLotListTileMolecule extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Chip(
-              backgroundColor: parkingSpaceEntity.isUse ? AppColors.scale_05 : AppColors.darkGreen,
+              backgroundColor: parkingSpaceEntity.inUse ? AppColors.scale_05 : AppColors.darkGreen,
               label: TextAtom.bold(
-                text: parkingSpaceEntity.isUse ? AppStrings.inUse : AppStrings.available,
+                text: parkingSpaceEntity.inUse ? AppStrings.inUse : AppStrings.available,
                 fontSize: AppSizes.h_20,
                 color: AppColors.scale_00,
               ),
@@ -35,7 +36,7 @@ class ParkingLotListTileMolecule extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             const Spacer(),
-            parkingSpaceEntity.isUse
+            parkingSpaceEntity.inUse
                 ? const SizedBox.shrink()
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
