@@ -55,3 +55,7 @@ Aplicativo foi testado nas plataformas Android e IOS, release disponível para A
 https://user-images.githubusercontent.com/54847652/214026894-2678db95-11bd-40a0-99c6-fd20157ab74e.mp4
 
 </div>
+
+# Licença
+
+Este projeto está sob a licença (MIT).
