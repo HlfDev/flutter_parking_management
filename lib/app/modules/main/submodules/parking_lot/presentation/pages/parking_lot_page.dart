@@ -84,11 +84,13 @@ class _ParkingLotPageState extends State<ParkingLotPage> {
                     if (state.analyseIfExistsCode(code)) {
                       _showExistingParkingSpaceDialog();
                     } else {
-                      _parkingLotBloc.add(ParkingLotAddParkingEntityEvent(code: code));
+                      _parkingLotBloc
+                          .add(ParkingLotAddParkingEntityEvent(code: code));
                       _controllerParkingSpace.clear();
                     }
                   },
-                  onListTitleTap: (id, index, code) => _showDeleteDialog(id, index, code),
+                  onListTitleTap: (id, index, code) =>
+                      _showDeleteDialog(id, index, code),
                 )
               : const SizedBox.shrink();
         },

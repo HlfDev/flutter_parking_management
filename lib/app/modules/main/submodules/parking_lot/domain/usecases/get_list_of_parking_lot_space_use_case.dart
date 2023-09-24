@@ -10,7 +10,8 @@ abstract class GetListOfParkingLotSpaceUseCase {
   Future<Either<Failure, void>> call();
 }
 
-class GetListOfParkingLotSpaceUseCaseImpl implements GetListOfParkingLotSpaceUseCase {
+class GetListOfParkingLotSpaceUseCaseImpl
+    implements GetListOfParkingLotSpaceUseCase {
   final ParkingLotRepository _parkingLotRepository;
 
   GetListOfParkingLotSpaceUseCaseImpl(this._parkingLotRepository);

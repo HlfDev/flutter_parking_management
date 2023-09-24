@@ -11,8 +11,8 @@ class AppModule extends Module {
   List<Module> get imports => [CoreModule()];
 
   @override
-  final List<ModularRoute> routes = [
-    ModuleRoute(SplashModule.moduleName, module: SplashModule()),
-    ModuleRoute(MainModule.moduleName, module: MainModule()),
-  ];
+  void routes(r) {
+    r.module(SplashModule.moduleName, module: SplashModule());
+    r.module(MainModule.moduleName, module: MainModule());
+  }
 }

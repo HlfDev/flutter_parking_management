@@ -10,32 +10,37 @@ import '../../../../../../../test_mocks.dart';
 import '../../parking_lot_mocks.dart';
 
 void main() {
-  late RemoveParkingLotSpaceByIdUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl;
+  late RemoveParkingLotSpaceByIdUseCaseImpl
+      removeParkingLotSpaceByKeyUseCaseImpl;
   late ParkingLotRepositoryImpl parkingLotRepositoryImpl;
 
   setUpAll(() {
     parkingLotRepositoryImpl = MockParkingLotRepositoryImpl();
-    removeParkingLotSpaceByKeyUseCaseImpl = RemoveParkingLotSpaceByIdUseCaseImpl(
+    removeParkingLotSpaceByKeyUseCaseImpl =
+        RemoveParkingLotSpaceByIdUseCaseImpl(
       parkingLotRepositoryImpl,
     );
   });
 
   group(
-    'when the call to [ParkingLotRepositoryImpl] method [removeParkingLotSpaceByKey] is successfull',
+    'when the call to [ParkingLotRepositoryImpl] method [removeParkingLotSpaceByKey] is successful',
     () {
       test(
         'should return [Right] with a [null]',
         () async {
           //Arrange
-          when(() => parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id))
+          when(() => parkingLotRepositoryImpl
+                  .removeParkingLotSpaceById(parkingSpaceEntityMock.id))
               .thenAnswer((_) async => const Right(null));
 
           //Act
-          final result = await removeParkingLotSpaceByKeyUseCaseImpl(parkingSpaceEntityMock.id);
+          final result = await removeParkingLotSpaceByKeyUseCaseImpl(
+              parkingSpaceEntityMock.id);
 
           //Assert
           verify(
-            () => parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id),
+            () => parkingLotRepositoryImpl
+                .removeParkingLotSpaceById(parkingSpaceEntityMock.id),
           ).called(1);
           expect(result, const Right(null));
         },
@@ -44,19 +49,22 @@ void main() {
   );
 
   group(
-    'when the call to [ParkingLotRepositoryImpl] method [removeParkingLotSpaceByKey] is unsuccessfull',
+    'when the call to [ParkingLotRepositoryImpl] method [removeParkingLotSpaceByKey] is unsuccessful',
     () {
       test('should return [Left] with a [Failure]', () async {
         //Arrange
-        when(() => parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id))
+        when(() => parkingLotRepositoryImpl
+                .removeParkingLotSpaceById(parkingSpaceEntityMock.id))
             .thenAnswer((_) async => Left(failureMock));
 
         //Act
-        final result = await removeParkingLotSpaceByKeyUseCaseImpl(parkingSpaceEntityMock.id);
+        final result = await removeParkingLotSpaceByKeyUseCaseImpl(
+            parkingSpaceEntityMock.id);
 
         //Assert
         verify(
-          () => parkingLotRepositoryImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id),
+          () => parkingLotRepositoryImpl
+              .removeParkingLotSpaceById(parkingSpaceEntityMock.id),
         ).called(1);
         expect(result, Left(failureMock));
       });

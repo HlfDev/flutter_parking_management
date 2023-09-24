@@ -12,16 +12,23 @@ part 'parking_lot_state.dart';
 
 class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
   final SaveParkingLotNewSpaceUseCaseImpl _saveParkingLotNewSpaceUseCaseImpl;
-  final GetListOfParkingLotSpaceUseCaseImpl _getListOfParkingLotSpaceUseCaseImpl;
-  final RemoveParkingLotSpaceByIdUseCaseImpl _removeParkingLotSpaceByIdUseCaseImpl;
+  final GetListOfParkingLotSpaceUseCaseImpl
+      _getListOfParkingLotSpaceUseCaseImpl;
+  final RemoveParkingLotSpaceByIdUseCaseImpl
+      _removeParkingLotSpaceByIdUseCaseImpl;
 
   ParkingLotBloc({
-    required SaveParkingLotNewSpaceUseCaseImpl saveParkingLotNewSpaceUseCaseImpl,
-    required GetListOfParkingLotSpaceUseCaseImpl getListOfParkingLotSpaceUseCaseImpl,
-    required RemoveParkingLotSpaceByIdUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl,
+    required SaveParkingLotNewSpaceUseCaseImpl
+        saveParkingLotNewSpaceUseCaseImpl,
+    required GetListOfParkingLotSpaceUseCaseImpl
+        getListOfParkingLotSpaceUseCaseImpl,
+    required RemoveParkingLotSpaceByIdUseCaseImpl
+        removeParkingLotSpaceByKeyUseCaseImpl,
   })  : _saveParkingLotNewSpaceUseCaseImpl = saveParkingLotNewSpaceUseCaseImpl,
-        _getListOfParkingLotSpaceUseCaseImpl = getListOfParkingLotSpaceUseCaseImpl,
-        _removeParkingLotSpaceByIdUseCaseImpl = removeParkingLotSpaceByKeyUseCaseImpl,
+        _getListOfParkingLotSpaceUseCaseImpl =
+            getListOfParkingLotSpaceUseCaseImpl,
+        _removeParkingLotSpaceByIdUseCaseImpl =
+            removeParkingLotSpaceByKeyUseCaseImpl,
         super(ParkingLotInitialState()) {
     on<ParkingLotLoadParkingEntityEvent>(
       (event, emit) => _getListOfParkingLotSpace(event, emit),
@@ -74,7 +81,8 @@ class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
     ParkingLotRemoveParkingEntityEvent event,
     Emitter<ParkingLotState> emit,
   ) async {
-    final result = await _removeParkingLotSpaceByIdUseCaseImpl(event.parkingSpaceId);
+    final result =
+        await _removeParkingLotSpaceByIdUseCaseImpl(event.parkingSpaceId);
 
     result.fold(
       (failure) => emit(ParkingLotFailureState()),
