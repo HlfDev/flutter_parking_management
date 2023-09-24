@@ -15,11 +15,9 @@ class MockRemoveParkingLotSpaceByKeyUseCaseImpl extends Mock
 class MockSaveParkingLotNewSpaceUseCaseImpl extends Mock
     implements SaveParkingLotNewSpaceUseCaseImpl {}
 
-class MockParkingLotRepositoryImpl extends Mock
-    implements ParkingLotRepositoryImpl {}
+class MockParkingLotRepositoryImpl extends Mock implements ParkingLotRepositoryImpl {}
 
-class MockParkingLotLocalDatasourceImpl extends Mock
-    implements ParkingLotLocalDatasourceImpl {}
+class MockParkingLotLocalDatasourceImpl extends Mock implements ParkingLotLocalDatasourceImpl {}
 
 class MockCacheService extends Mock implements CacheService {}
 

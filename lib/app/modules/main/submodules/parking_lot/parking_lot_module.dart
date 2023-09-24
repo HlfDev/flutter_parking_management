@@ -8,28 +8,34 @@ import 'presentation/presentation.dart';
 
 class ParkingLotModule extends Module {
   @override
-  void binds(i) {
-    // Datasources
-    i.addLazySingleton(ParkingLotLocalDatasourceImpl.new);
+  List<Bind> get binds => [
+        // Datasources
+        Bind.lazySingleton((i) => ParkingLotLocalDatasourceImpl(i()), export: true),
 
-    // Repositories
-    i.addLazySingleton(ParkingLotRepositoryImpl.new);
+        // Repositories
+        Bind.lazySingleton((i) => ParkingLotRepositoryImpl(i()), export: true),
 
-    // Usecases
-    i.addLazySingleton(SaveParkingLotNewSpaceUseCaseImpl.new);
-    i.addLazySingleton(GetListOfParkingLotSpaceUseCaseImpl.new);
-    i.addLazySingleton(RemoveParkingLotSpaceByIdUseCaseImpl.new);
+        // Usecases
+        Bind.lazySingleton((i) => SaveParkingLotNewSpaceUseCaseImpl(i()), export: true),
+        Bind.lazySingleton((i) => GetListOfParkingLotSpaceUseCaseImpl(i()), export: true),
+        Bind.lazySingleton((i) => RemoveParkingLotSpaceByIdUseCaseImpl(i()), export: true),
 
-    // Controllers
-    i.addLazySingleton(ParkingLotBloc.new);
-  }
+        // Controllers
+        Bind.lazySingleton(
+          (i) => ParkingLotBloc(
+            getListOfParkingLotSpaceUseCaseImpl: i(),
+            removeParkingLotSpaceByKeyUseCaseImpl: i(),
+            saveParkingLotNewSpaceUseCaseImpl: i(),
+          ),
+          export: true,
+        ),
+      ];
 
   @override
-  void routes(r) {
-    r.child(
+  final List<ModularRoute> routes = [
+    ChildRoute(
       Modular.initialRoute,
-      transition: TransitionType.noTransition,
-      child: (_) => const ParkingLotPage(),
-    );
-  }
+      child: (_, args) => const ParkingLotPage(),
+    ),
+  ];
 }

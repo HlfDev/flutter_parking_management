@@ -10,8 +10,7 @@ abstract class SaveParkingLotNewSpaceUseCase {
   Future<Either<Failure, void>> call(ParkingSpaceEntity params);
 }
 
-class SaveParkingLotNewSpaceUseCaseImpl
-    implements SaveParkingLotNewSpaceUseCase {
+class SaveParkingLotNewSpaceUseCaseImpl implements SaveParkingLotNewSpaceUseCase {
   final ParkingLotRepository _parkingLotRepository;
 
   SaveParkingLotNewSpaceUseCaseImpl(this._parkingLotRepository);

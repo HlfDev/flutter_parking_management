@@ -10,6 +10,7 @@ import '../controller/controller.dart';
 
 // Project imports:
 
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -22,8 +23,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
   late TabController _tabController;
 
-  void _initializeTabController() =>
-      _tabController = TabController(length: 3, vsync: this);
+  void _initializeTabController() => _tabController = TabController(length: 3, vsync: this);
 
   @override
   void initState() {
@@ -42,8 +42,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     return Scaffold(
       appBar: MainTabBarMolecule(
         tabController: _tabController,
-        onTapOption: (index) =>
-            _mainBloc.add(ChangeCurrentPageEvent(index: index)),
+        onTapOption: (index) => _mainBloc.add(ChangeCurrentPageEvent(index: index)),
       ),
       body: const RouterOutlet(),
     );

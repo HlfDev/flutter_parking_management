@@ -13,8 +13,7 @@ class ParkingLotRepositoryImpl implements ParkingLotRepository {
   ParkingLotRepositoryImpl(this._parkingLotLocalDatasource);
 
   @override
-  Future<Either<Failure, void>> saveParkingLotNewSpace(
-      ParkingSpaceEntity params) async {
+  Future<Either<Failure, void>> saveParkingLotNewSpace(ParkingSpaceEntity params) async {
     try {
       await _parkingLotLocalDatasource.saveParkingLotNewSpace(params);
 
@@ -25,11 +24,9 @@ class ParkingLotRepositoryImpl implements ParkingLotRepository {
   }
 
   @override
-  Future<Either<Failure, List<ParkingSpaceEntity>?>>
-      getListOfParkingLotSpace() async {
+  Future<Either<Failure, List<ParkingSpaceEntity>?>> getListOfParkingLotSpace() async {
     try {
-      final result =
-          await _parkingLotLocalDatasource.getListOfParkingLotSpace();
+      final result = await _parkingLotLocalDatasource.getListOfParkingLotSpace();
 
       return Right(result);
     } catch (error) {

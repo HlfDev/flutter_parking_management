@@ -1,8 +1,10 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 // Project imports:
 import '../../../../app.dart';
@@ -10,7 +12,7 @@ import '../../../../app.dart';
 part 'main_event.dart';
 part 'main_state.dart';
 
-class MainBloc extends Bloc<MainEvent, MainState> {
+class MainBloc extends Bloc<MainEvent, MainState> with Disposable {
   final AppNavigator _appNavigator;
 
   MainBloc(this._appNavigator) : super(const MainInitialState()) {
@@ -30,5 +32,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         _appNavigator.navigateToMainModuleVehicleExitPage();
         return;
     }
+  }
+
+  @override
+  void dispose() {
+    super.close();
   }
 }

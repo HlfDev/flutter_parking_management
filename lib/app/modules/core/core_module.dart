@@ -4,14 +4,16 @@ import 'package:flutter_modular/flutter_modular.dart';
 // Project imports:
 import '../../app.dart';
 import 'services/cache/cache.dart';
+import 'services/navigator/navigator.dart';
 
 class CoreModule extends Module {
   @override
-  void exportedBinds(Injector i) {
-    //Services
-    i.addLazySingleton(HiveCacheServiceImpl.new);
+  List<Bind> get binds => [
+        //Services
+        Bind.lazySingleton((i) => HiveCacheServiceImpl(), export: true),
+        Bind.lazySingleton((i) => ModularNavigatorServiceImpl(), export: true),
 
-    // Navigator
-    i.addLazySingleton(AppNavigator.new);
-  }
+        // Navigator
+        Bind.lazySingleton((i) => AppNavigator(i()), export: true),
+      ];
 }

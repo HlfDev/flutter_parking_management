@@ -1,11 +1,11 @@
 // Package imports:
 import 'package:dartz/dartz.dart';
-// Project imports:
-import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/data/data.dart';
-import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/domain/usecases/get_list_of_parking_lot_space_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+// Project imports:
+import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/data/data.dart';
+import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/domain/usecases/get_list_of_parking_lot_space_use_case.dart';
 import '../../../../../../../test_mocks.dart';
 import '../../parking_lot_mocks.dart';
 
@@ -21,7 +21,7 @@ void main() {
   });
 
   group(
-    'when the call to [ParkingLotRepositoryImpl] method [getListOfParkingLotSpace] is successful',
+    'when the call to [ParkingLotRepositoryImpl] method [getListOfParkingLotSpace] is successfull',
     () {
       test(
         'should return [Right] with a [List<ParkingSpaceEntity>]',
@@ -34,8 +34,7 @@ void main() {
           final result = await getListOfParkingLotSpaceUseCaseImpl();
 
           //Assert
-          verify(() => parkingLotRepositoryImpl.getListOfParkingLotSpace())
-              .called(1);
+          verify(() => parkingLotRepositoryImpl.getListOfParkingLotSpace()).called(1);
           expect(result, const Right(parkingSpaceEntityListMock));
         },
       );
@@ -43,7 +42,7 @@ void main() {
   );
 
   group(
-    'when the call to [ParkingLotRepositoryImpl] method [getListOfParkingLotSpace] is unsuccessful',
+    'when the call to [ParkingLotRepositoryImpl] method [getListOfParkingLotSpace] is unsuccessfull',
     () {
       test('should return [Left] with a [Failure]', () async {
         //Arrange
@@ -54,8 +53,7 @@ void main() {
         final result = await getListOfParkingLotSpaceUseCaseImpl();
 
         //Assert
-        verify(() => parkingLotRepositoryImpl.getListOfParkingLotSpace())
-            .called(1);
+        verify(() => parkingLotRepositoryImpl.getListOfParkingLotSpace()).called(1);
         expect(result, Left(failureMock));
       });
     },
