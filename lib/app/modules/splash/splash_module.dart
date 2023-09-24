@@ -8,7 +8,6 @@ import 'presentation/pages/pages.dart';
 class SplashModule extends Module {
   static const moduleName = '/';
 
-
   @override
   void binds(i) {
     i.addLazySingleton(SplashBloc.new);

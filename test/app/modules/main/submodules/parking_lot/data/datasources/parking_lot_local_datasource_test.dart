@@ -1,11 +1,11 @@
 // Package imports:
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-
 // Project imports:
 import 'package:flutter_parking_management/app/modules/core/services/interfaces/interfaces.dart';
 import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/data/data.dart';
 import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/domain/domain.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
 import '../../../../../../../test_mocks.dart';
 import '../../parking_lot_mocks.dart';
 
@@ -23,7 +23,7 @@ void main() {
 
   group('when [getListOfParkingLotSpace] function is called, ', () {
     test(
-      'and when the call to [CacheService] is successfull, should return a [List<ParkingSpaceEntity>]',
+      'and when the call to [CacheService] is successful, should return a [List<ParkingSpaceEntity>]',
       () async {
         //Arrange
         when(() => cacheService.getAll<ParkingSpaceEntity>(any())).thenAnswer(
@@ -31,16 +31,20 @@ void main() {
         );
 
         //Act
-        final result = await parkingLotLocalDatasourceImpl.getListOfParkingLotSpace();
+        final result =
+            await parkingLotLocalDatasourceImpl.getListOfParkingLotSpace();
 
         //Assert
         expect(result, isA<List<ParkingSpaceEntity>>());
       },
     );
 
-    test('and when the call to [CacheService] is unsuccessfull, should throw a [Exception]', () {
+    test(
+        'and when the call to [CacheService] is unsuccessful, should throw a [Exception]',
+        () {
       //Arrange
-      when(() => cacheService.getAll<ParkingSpaceEntity>(any())).thenThrow(exceptionMock);
+      when(() => cacheService.getAll<ParkingSpaceEntity>(any()))
+          .thenThrow(exceptionMock);
 
       //Act
       final result = parkingLotLocalDatasourceImpl.getListOfParkingLotSpace();
@@ -51,26 +55,33 @@ void main() {
   });
 
   group('when [saveParkingLotNewSpace] function is called, ', () {
-    test('and when the call to [CacheService] is successfull, should return a [null]', () async {
+    test(
+        'and when the call to [CacheService] is successful, should return a [null]',
+        () async {
       //Arrange
-      when(() => cacheService.set<ParkingSpaceEntity>(any(), any(), any())).thenAnswer(
+      when(() => cacheService.set<ParkingSpaceEntity>(any(), any(), any()))
+          .thenAnswer(
         (_) async => returnsNormally,
       );
 
       //Act
-      final result = parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
+      final result = parkingLotLocalDatasourceImpl
+          .saveParkingLotNewSpace(parkingSpaceEntityMock);
 
       //Assert
       expect(result, isA<Future<void>>());
     });
 
-    test('and when the call to [CacheService] is unsuccessfull, should throw a [Exception]', () {
+    test(
+        'and when the call to [CacheService] is unsuccessful, should throw a [Exception]',
+        () {
       //Arrange
       when(() => cacheService.set<ParkingSpaceEntity>(any(), any(), any()))
           .thenThrow(exceptionMock);
 
       //Act
-      final result = parkingLotLocalDatasourceImpl.saveParkingLotNewSpace(parkingSpaceEntityMock);
+      final result = parkingLotLocalDatasourceImpl
+          .saveParkingLotNewSpace(parkingSpaceEntityMock);
 
       //Assert
       expect(result, throwsA(isA<Exception>()));
@@ -78,27 +89,33 @@ void main() {
   });
 
   group('when [removeParkingLotSpaceById] function is called, ', () {
-    test('and when the call to [CacheService] is successfull, should return a [null]', () async {
+    test(
+        'and when the call to [CacheService] is successful, should return a [null]',
+        () async {
       //Arrange
-      when(() => cacheService.remove<ParkingSpaceEntity>(any(), any())).thenAnswer(
+      when(() => cacheService.remove<ParkingSpaceEntity>(any(), any()))
+          .thenAnswer(
         (_) async => returnsNormally,
       );
 
       //Act
-      final result =
-          parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
+      final result = parkingLotLocalDatasourceImpl
+          .removeParkingLotSpaceById(parkingSpaceEntityMock.id);
 
       //Assert
       expect(result, isA<Future<void>>());
     });
 
-    test('and when the call to [CacheService] is unsuccessfull, should throw a [Exception]', () {
+    test(
+        'and when the call to [CacheService] is unsuccessful, should throw a [Exception]',
+        () {
       //Arrange
-      when(() => cacheService.remove<ParkingSpaceEntity>(any(), any())).thenThrow(exceptionMock);
+      when(() => cacheService.remove<ParkingSpaceEntity>(any(), any()))
+          .thenThrow(exceptionMock);
 
       //Act
-      final result =
-          parkingLotLocalDatasourceImpl.removeParkingLotSpaceById(parkingSpaceEntityMock.id);
+      final result = parkingLotLocalDatasourceImpl
+          .removeParkingLotSpaceById(parkingSpaceEntityMock.id);
 
       //Assert
       expect(result, throwsA(isA<Exception>()));

@@ -13,6 +13,6 @@ class AppModule extends Module {
   @override
   void routes(r) {
     r.module(SplashModule.moduleName, module: SplashModule());
-    r.module(MainModule.moduleName, module:  MainModule());
+    r.module(MainModule.moduleName, module: MainModule());
   }
 }

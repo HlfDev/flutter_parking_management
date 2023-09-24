@@ -20,8 +20,8 @@ class ParkingLotWarningDialogMolecule extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       actionsAlignment: MainAxisAlignment.center,
-      title: Column(
-        children: const [
+      title: const Column(
+        children: [
           Icon(
             Icons.warning,
             color: AppColors.orange,
