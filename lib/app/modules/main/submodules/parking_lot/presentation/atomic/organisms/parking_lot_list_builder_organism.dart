@@ -23,8 +23,7 @@ class ParkingLotListBuilderOrganism extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemCount: parkingSpaceEntityList!.length,
       itemBuilder: (BuildContext context, index) => GestureDetector(
         onTap: () => onListTitleTap(

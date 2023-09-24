@@ -22,13 +22,9 @@ class ParkingLotListTileMolecule extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Chip(
-              backgroundColor: parkingSpaceEntity.inUse
-                  ? AppColors.scale_05
-                  : AppColors.darkGreen,
+              backgroundColor: parkingSpaceEntity.inUse ? AppColors.scale_05 : AppColors.darkGreen,
               label: TextAtom.bold(
-                text: parkingSpaceEntity.inUse
-                    ? AppStrings.inUse
-                    : AppStrings.available,
+                text: parkingSpaceEntity.inUse ? AppStrings.inUse : AppStrings.available,
                 fontSize: AppSizes.h_20,
                 color: AppColors.scale_00,
               ),
@@ -42,9 +38,9 @@ class ParkingLotListTileMolecule extends StatelessWidget {
             const Spacer(),
             parkingSpaceEntity.inUse
                 ? const SizedBox.shrink()
-                : const Row(
+                : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(Icons.delete, color: Colors.red),
                       SizedBox(width: AppSizes.w_4),
                       TextAtom.bold(

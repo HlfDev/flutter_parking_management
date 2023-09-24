@@ -13,26 +13,21 @@ import '../../parking_lot_mocks.dart';
 void main() {
   late ParkingLotBloc parkingLotBloc;
   late GetListOfParkingLotSpaceUseCaseImpl getListOfParkingLotSpaceUseCaseImpl;
-  late RemoveParkingLotSpaceByIdUseCaseImpl
-      removeParkingLotSpaceByKeyUseCaseImpl;
+  late RemoveParkingLotSpaceByIdUseCaseImpl removeParkingLotSpaceByKeyUseCaseImpl;
   late SaveParkingLotNewSpaceUseCaseImpl saveParkingLotNewSpaceUseCaseImpl;
 
   setUp(() {
-    getListOfParkingLotSpaceUseCaseImpl =
-        MockGetListOfParkingLotSpaceUseCaseImpl();
-    removeParkingLotSpaceByKeyUseCaseImpl =
-        MockRemoveParkingLotSpaceByKeyUseCaseImpl();
+    getListOfParkingLotSpaceUseCaseImpl = MockGetListOfParkingLotSpaceUseCaseImpl();
+    removeParkingLotSpaceByKeyUseCaseImpl = MockRemoveParkingLotSpaceByKeyUseCaseImpl();
     saveParkingLotNewSpaceUseCaseImpl = MockSaveParkingLotNewSpaceUseCaseImpl();
 
     parkingLotBloc = ParkingLotBloc(
       getListOfParkingLotSpaceUseCaseImpl: getListOfParkingLotSpaceUseCaseImpl,
-      removeParkingLotSpaceByKeyUseCaseImpl:
-          removeParkingLotSpaceByKeyUseCaseImpl,
+      removeParkingLotSpaceByKeyUseCaseImpl: removeParkingLotSpaceByKeyUseCaseImpl,
       saveParkingLotNewSpaceUseCaseImpl: saveParkingLotNewSpaceUseCaseImpl,
     );
 
-    registerFallbackValue(
-        const ParkingSpaceEntity(code: '', id: '', inUse: false));
+    registerFallbackValue(const ParkingSpaceEntity(code: '', id: '', inUse: false));
   });
 
   tearDown(() {
@@ -47,8 +42,7 @@ void main() {
   blocTest(
     'should emit respectively [ParkingLotLoadingState, ParkingLotSuccessState] after add [ParkingLotLoadParkingEntityEvent]',
     build: () {
-      when(() => getListOfParkingLotSpaceUseCaseImpl())
-          .thenAnswer((_) async => const Right([]));
+      when(() => getListOfParkingLotSpaceUseCaseImpl()).thenAnswer((_) async => const Right([]));
 
       return parkingLotBloc;
     },
@@ -64,8 +58,7 @@ void main() {
   blocTest(
     'should emit respectively [ParkingLotLoadingState, ParkingLotSuccessState] after add [ParkingLotAddParkingEntityEvent]',
     build: () {
-      when(() => getListOfParkingLotSpaceUseCaseImpl())
-          .thenAnswer((_) async => const Right([]));
+      when(() => getListOfParkingLotSpaceUseCaseImpl()).thenAnswer((_) async => const Right([]));
       when(() => saveParkingLotNewSpaceUseCaseImpl(any())).thenAnswer(
         (_) async => const Right(null),
       );
@@ -73,8 +66,7 @@ void main() {
       return parkingLotBloc;
     },
     act: (bloc) {
-      bloc.add(
-          ParkingLotAddParkingEntityEvent(code: parkingSpaceEntityMock.code));
+      bloc.add(ParkingLotAddParkingEntityEvent(code: parkingSpaceEntityMock.code));
     },
     expect: () => [
       ParkingLotLoadingState(),
@@ -85,8 +77,7 @@ void main() {
   blocTest(
     'should emit respectively [ParkingLotLoadingState, ParkingLotSuccessState] after add [ParkingLotRemoveParkingEntityEvent]',
     build: () {
-      when(() => getListOfParkingLotSpaceUseCaseImpl())
-          .thenAnswer((_) async => const Right([]));
+      when(() => getListOfParkingLotSpaceUseCaseImpl()).thenAnswer((_) async => const Right([]));
       when(() => removeParkingLotSpaceByKeyUseCaseImpl(any())).thenAnswer(
         (_) async => const Right(null),
       );
@@ -108,8 +99,7 @@ void main() {
   blocTest(
     'should emit respectively [ParkingLotLoadingState, ParkingLotFailureState] after add [ParkingLotLoadParkingEntityEvent]',
     build: () {
-      when(() => getListOfParkingLotSpaceUseCaseImpl())
-          .thenAnswer((_) async => Left(failureMock));
+      when(() => getListOfParkingLotSpaceUseCaseImpl()).thenAnswer((_) async => Left(failureMock));
 
       return parkingLotBloc;
     },
@@ -147,8 +137,7 @@ void main() {
       return parkingLotBloc;
     },
     act: (bloc) {
-      bloc.add(const ParkingLotRemoveParkingEntityEvent(
-          index: 0, parkingSpaceId: ''));
+      bloc.add(const ParkingLotRemoveParkingEntityEvent(index: 0, parkingSpaceId: ''));
     },
     expect: () => [ParkingLotFailureState()],
   );

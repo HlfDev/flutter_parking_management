@@ -43,11 +43,8 @@ class _SplashPageState extends State<SplashPage> {
             title: SplashStrings.parkingManagement,
             animationAsset: AppAssetsJson.jsonRedCarDriving,
             isButtonVisibled: state.isSplashLoadedState,
-            onButtonTap: state.isSplashLoadedState
-                ? _splashBloc.navigateToMainModule
-                : null,
-            isTemplateVisible:
-                (state.isSplashLoadedState || state.isSplashLoadingState),
+            onButtonTap: state.isSplashLoadedState ? _splashBloc.navigateToMainModule : null,
+            isTemplateVisible: (state.isSplashLoadedState || state.isSplashLoadingState),
           );
         },
       ),

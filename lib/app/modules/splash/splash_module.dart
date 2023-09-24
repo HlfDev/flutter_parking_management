@@ -9,15 +9,16 @@ class SplashModule extends Module {
   static const moduleName = '/';
 
   @override
-  void binds(i) {
-    i.addLazySingleton(SplashBloc.new);
-  }
+  List<Bind> get binds => [
+        // Controller
+        Bind.lazySingleton((i) => SplashBloc(i())),
+      ];
 
   @override
-  void routes(r) {
-    r.child(
+  final List<ModularRoute> routes = [
+    ChildRoute(
       Modular.initialRoute,
-      child: (_) => const SplashPage(),
-    );
-  }
+      child: (_, args) => const SplashPage(),
+    ),
+  ];
 }

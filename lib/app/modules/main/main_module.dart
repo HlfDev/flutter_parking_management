@@ -10,8 +10,7 @@ class MainModule extends Module {
   static const moduleName = '/main';
 
   static const parkingLotPagePath = '$moduleName${ParkingLotPage.routePath}';
-  static const vehicleEntrancePagePath =
-      '$moduleName${VehicleEntrancePage.routePath}';
+  static const vehicleEntrancePagePath = '$moduleName${VehicleEntrancePage.routePath}';
   static const vehicleExitPagePath = '$moduleName${VehicleExitPage.routePath}';
 
   @override
@@ -22,33 +21,34 @@ class MainModule extends Module {
       ];
 
   @override
-  void binds(i) {
-    i.addLazySingleton(MainBloc.new);
-  }
+  List<Bind> get binds => [
+        // Controller
+        Bind.lazySingleton((i) => MainBloc(i())),
+      ];
 
   @override
-  void routes(r) {
-    r.child(
+  final List<ModularRoute> routes = [
+    ChildRoute(
       Modular.initialRoute,
+      child: (context, args) => const MainPage(),
       transition: TransitionType.noTransition,
-      child: (_) => const MainPage(),
       children: [
-        ParallelRoute.child(
+        ChildRoute(
           ParkingLotPage.routePath,
+          child: (context, args) => const ParkingLotPage(),
           transition: TransitionType.noTransition,
-          child: (_) => const ParkingLotPage(),
         ),
-        ParallelRoute.child(
+        ChildRoute(
           VehicleEntrancePage.routePath,
-          child: (_) => const VehicleEntrancePage(),
+          child: (context, args) => const VehicleEntrancePage(),
           transition: TransitionType.noTransition,
         ),
-        ParallelRoute.child(
+        ChildRoute(
           VehicleExitPage.routePath,
-          child: (_) => const VehicleExitPage(),
+          child: (context, args) => const VehicleExitPage(),
           transition: TransitionType.noTransition,
         ),
       ],
-    );
-  }
+    ),
+  ];
 }
