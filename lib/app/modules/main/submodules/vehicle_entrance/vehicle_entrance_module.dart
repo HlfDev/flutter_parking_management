@@ -6,13 +6,11 @@ import 'presentation/pages/pages.dart';
 
 class VehicleEntranceModule extends Module {
   @override
-  List<Bind> get binds => [];
-
-  @override
-  final List<ModularRoute> routes = [
-    ChildRoute(
+  void routes(r) {
+    r.child(
       Modular.initialRoute,
-      child: (_, args) => const VehicleEntrancePage(),
-    ),
-  ];
+      transition: TransitionType.noTransition,
+      child: (_) => const VehicleEntrancePage(),
+    );
+  }
 }
