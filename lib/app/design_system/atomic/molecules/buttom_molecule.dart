@@ -25,7 +25,8 @@ class ButtomMolecule extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(buttonColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r_16)),
+            RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppSizes.r_16)),
           ),
         ),
         child: Padding(
