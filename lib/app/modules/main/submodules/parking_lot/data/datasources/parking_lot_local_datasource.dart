@@ -17,9 +17,11 @@ class ParkingLotLocalDatasourceImpl implements ParkingLotLocalDatasource {
   @override
   Future<void> saveParkingLotNewSpace(ParkingSpaceEntity params) async {
     try {
-      await _cacheService.register<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox);
+      await _cacheService
+          .register<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox);
 
-      _cacheService.set<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox, params.id, params);
+      _cacheService.set<ParkingSpaceEntity>(
+          HiveBoxes.parkingSpaceEntityBox, params.id, params);
     } catch (_) {
       rethrow;
     }
@@ -28,9 +30,11 @@ class ParkingLotLocalDatasourceImpl implements ParkingLotLocalDatasource {
   @override
   Future<List<ParkingSpaceEntity>?> getListOfParkingLotSpace() async {
     try {
-      await _cacheService.register<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox);
+      await _cacheService
+          .register<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox);
 
-      return await _cacheService.getAll<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox);
+      return await _cacheService
+          .getAll<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox);
     } catch (_) {
       rethrow;
     }
@@ -39,9 +43,11 @@ class ParkingLotLocalDatasourceImpl implements ParkingLotLocalDatasource {
   @override
   Future<void> removeParkingLotSpaceById(String id) async {
     try {
-      await _cacheService.register<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox);
+      await _cacheService
+          .register<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox);
 
-      await _cacheService.remove<ParkingSpaceEntity>(HiveBoxes.parkingSpaceEntityBox, id);
+      await _cacheService.remove<ParkingSpaceEntity>(
+          HiveBoxes.parkingSpaceEntityBox, id);
     } catch (_) {
       rethrow;
     }

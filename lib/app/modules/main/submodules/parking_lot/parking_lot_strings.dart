@@ -1,8 +1,10 @@
 class ParkingLotStrings {
   ParkingLotStrings._();
 
-  static String warningDialogMessage(String code) => 'Deseja mesmo excluir a vaga: $code';
-  static const infoDialogMessage = 'Esse código de vaga já está sendo utilizado!';
+  static String warningDialogMessage(String code) =>
+      'Deseja mesmo excluir a vaga: $code';
+  static const infoDialogMessage =
+      'Esse código de vaga já está sendo utilizado!';
 
   static const registerSpace = 'Cadastrar vaga';
 

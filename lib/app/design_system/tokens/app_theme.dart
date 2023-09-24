@@ -6,7 +6,8 @@ import '../design_system.dart';
 
 final ThemeData appThemeLight = ThemeData(
   useMaterial3: true,
-  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColors.secondary),
+  colorScheme:
+      ColorScheme.fromSwatch().copyWith(secondary: AppColors.secondary),
   primaryColor: AppColors.secondary,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   highlightColor: AppColors.primary,
