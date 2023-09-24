@@ -14,7 +14,8 @@ class ParkingLotRepositoryImpl implements ParkingLotRepository {
 
   @override
   Future<Either<Failure, void>> saveParkingLotNewSpace(
-      ParkingSpaceEntity params) async {
+    ParkingSpaceEntity params,
+  ) async {
     try {
       await _parkingLotLocalDatasource.saveParkingLotNewSpace(params);
 

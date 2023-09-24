@@ -11,24 +11,18 @@ part 'parking_lot_event.dart';
 part 'parking_lot_state.dart';
 
 class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
-  final SaveParkingLotNewSpaceUseCaseImpl _saveParkingLotNewSpaceUseCaseImpl;
-  final GetListOfParkingLotSpaceUseCaseImpl
-      _getListOfParkingLotSpaceUseCaseImpl;
-  final RemoveParkingLotSpaceByIdUseCaseImpl
-      _removeParkingLotSpaceByIdUseCaseImpl;
+  final SaveParkingLotNewSpaceUseCase _saveParkingLotNewSpaceUseCase;
+  final GetListOfParkingLotSpaceUseCase _getListOfParkingLotSpaceUseCase;
+  final RemoveParkingLotSpaceByKeyUseCase _removeParkingLotSpaceByIdUseCase;
 
   ParkingLotBloc({
-    required SaveParkingLotNewSpaceUseCaseImpl
-        saveParkingLotNewSpaceUseCaseImpl,
-    required GetListOfParkingLotSpaceUseCaseImpl
-        getListOfParkingLotSpaceUseCaseImpl,
-    required RemoveParkingLotSpaceByIdUseCaseImpl
-        removeParkingLotSpaceByKeyUseCaseImpl,
-  })  : _saveParkingLotNewSpaceUseCaseImpl = saveParkingLotNewSpaceUseCaseImpl,
-        _getListOfParkingLotSpaceUseCaseImpl =
-            getListOfParkingLotSpaceUseCaseImpl,
-        _removeParkingLotSpaceByIdUseCaseImpl =
-            removeParkingLotSpaceByKeyUseCaseImpl,
+    required SaveParkingLotNewSpaceUseCase saveParkingLotNewSpaceUseCase,
+    required GetListOfParkingLotSpaceUseCase getListOfParkingLotSpaceUseCase,
+    required RemoveParkingLotSpaceByKeyUseCase
+        removeParkingLotSpaceByKeyUseCase,
+  })  : _saveParkingLotNewSpaceUseCase = saveParkingLotNewSpaceUseCase,
+        _getListOfParkingLotSpaceUseCase = getListOfParkingLotSpaceUseCase,
+        _removeParkingLotSpaceByIdUseCase = removeParkingLotSpaceByKeyUseCase,
         super(ParkingLotInitialState()) {
     on<ParkingLotLoadParkingEntityEvent>(
       (event, emit) => _getListOfParkingLotSpace(event, emit),
@@ -47,13 +41,15 @@ class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
   ) async {
     emit(ParkingLotLoadingState());
 
-    final result = await _getListOfParkingLotSpaceUseCaseImpl();
+    final result = await _getListOfParkingLotSpaceUseCase();
 
     result.fold(
       (failure) => emit(ParkingLotFailureState()),
-      (parkingSpaceEntityList) => emit(ParkingLotSuccessState(
-        parkingSpaceEntityList: parkingSpaceEntityList,
-      )),
+      (parkingSpaceEntityList) => emit(
+        ParkingLotSuccessState(
+          parkingSpaceEntityList: parkingSpaceEntityList,
+        ),
+      ),
     );
   }
 
@@ -61,7 +57,7 @@ class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
     ParkingLotAddParkingEntityEvent event,
     Emitter<ParkingLotState> emit,
   ) async {
-    final result = await _saveParkingLotNewSpaceUseCaseImpl(
+    final result = await _saveParkingLotNewSpaceUseCase(
       ParkingSpaceEntity(
         id: const Uuid().v4(),
         code: event.code,
@@ -82,7 +78,7 @@ class ParkingLotBloc extends Bloc<ParkingLotEvent, ParkingLotState> {
     Emitter<ParkingLotState> emit,
   ) async {
     final result =
-        await _removeParkingLotSpaceByIdUseCaseImpl(event.parkingSpaceId);
+        await _removeParkingLotSpaceByIdUseCase(event.parkingSpaceId);
 
     result.fold(
       (failure) => emit(ParkingLotFailureState()),

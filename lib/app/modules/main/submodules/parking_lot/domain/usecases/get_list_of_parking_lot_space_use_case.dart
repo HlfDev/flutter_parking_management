@@ -7,7 +7,7 @@ import '../entities/parking_space_entity.dart';
 import '../repositories/parking_lot_repository.dart';
 
 abstract class GetListOfParkingLotSpaceUseCase {
-  Future<Either<Failure, void>> call();
+  Future<Either<Failure, List<ParkingSpaceEntity>?>> call();
 }
 
 class GetListOfParkingLotSpaceUseCaseImpl

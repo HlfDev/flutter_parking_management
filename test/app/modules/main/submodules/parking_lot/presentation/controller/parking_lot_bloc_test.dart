@@ -1,12 +1,12 @@
 // Package imports:
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-
 // Project imports:
 import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/domain/domain.dart';
 import 'package:flutter_parking_management/app/modules/main/submodules/parking_lot/presentation/controller/controller.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
 import '../../../../../../../test_mocks.dart';
 import '../../parking_lot_mocks.dart';
 
@@ -25,14 +25,14 @@ void main() {
     saveParkingLotNewSpaceUseCaseImpl = MockSaveParkingLotNewSpaceUseCaseImpl();
 
     parkingLotBloc = ParkingLotBloc(
-      getListOfParkingLotSpaceUseCaseImpl: getListOfParkingLotSpaceUseCaseImpl,
-      removeParkingLotSpaceByKeyUseCaseImpl:
-          removeParkingLotSpaceByKeyUseCaseImpl,
-      saveParkingLotNewSpaceUseCaseImpl: saveParkingLotNewSpaceUseCaseImpl,
+      getListOfParkingLotSpaceUseCase: getListOfParkingLotSpaceUseCaseImpl,
+      removeParkingLotSpaceByKeyUseCase: removeParkingLotSpaceByKeyUseCaseImpl,
+      saveParkingLotNewSpaceUseCase: saveParkingLotNewSpaceUseCaseImpl,
     );
 
     registerFallbackValue(
-        const ParkingSpaceEntity(code: '', id: '', inUse: false));
+      const ParkingSpaceEntity(code: '', id: '', inUse: false),
+    );
   });
 
   tearDown(() {
@@ -74,7 +74,8 @@ void main() {
     },
     act: (bloc) {
       bloc.add(
-          ParkingLotAddParkingEntityEvent(code: parkingSpaceEntityMock.code));
+        ParkingLotAddParkingEntityEvent(code: parkingSpaceEntityMock.code),
+      );
     },
     expect: () => [
       ParkingLotLoadingState(),
@@ -148,7 +149,9 @@ void main() {
     },
     act: (bloc) {
       bloc.add(const ParkingLotRemoveParkingEntityEvent(
-          index: 0, parkingSpaceId: ''));
+        index: 0,
+        parkingSpaceId: '',
+      ));
     },
     expect: () => [ParkingLotFailureState()],
   );

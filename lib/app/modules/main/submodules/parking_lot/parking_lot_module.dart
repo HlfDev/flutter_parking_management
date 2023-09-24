@@ -8,17 +8,25 @@ import 'presentation/presentation.dart';
 
 class ParkingLotModule extends Module {
   @override
-  void binds(i) {
-    // Datasources
-    i.addLazySingleton(ParkingLotLocalDatasourceImpl.new);
+  void exportedBinds(i) {
+    // Datasource's
+    i.addLazySingleton<ParkingLotLocalDatasource>(
+      ParkingLotLocalDatasourceImpl.new,
+    );
 
     // Repositories
-    i.addLazySingleton(ParkingLotRepositoryImpl.new);
+    i.addLazySingleton<ParkingLotRepository>(ParkingLotRepositoryImpl.new);
 
-    // Usecases
-    i.addLazySingleton(SaveParkingLotNewSpaceUseCaseImpl.new);
-    i.addLazySingleton(GetListOfParkingLotSpaceUseCaseImpl.new);
-    i.addLazySingleton(RemoveParkingLotSpaceByIdUseCaseImpl.new);
+    // Use cases
+    i.addLazySingleton<SaveParkingLotNewSpaceUseCase>(
+      SaveParkingLotNewSpaceUseCaseImpl.new,
+    );
+    i.addLazySingleton<GetListOfParkingLotSpaceUseCase>(
+      GetListOfParkingLotSpaceUseCaseImpl.new,
+    );
+    i.addLazySingleton<RemoveParkingLotSpaceByKeyUseCase>(
+      RemoveParkingLotSpaceByIdUseCaseImpl.new,
+    );
 
     // Controllers
     i.addLazySingleton(ParkingLotBloc.new);
